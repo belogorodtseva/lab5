@@ -3,7 +3,7 @@ import numpy as np
 from django.views.generic.edit import FormView
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
-
+import time
 from .forms import MatrixForm, GenerateForm
 
 
@@ -25,6 +25,7 @@ class MatrixView(FormView):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
+        start_time = time.time()
         try:
             matrix_a = form.cleaned_data.get('matrix_a')
             matrix_b = form.cleaned_data.get('matrix_b')
@@ -37,12 +38,14 @@ class MatrixView(FormView):
                 a = np.matrix(np.ones((a_raw_num, a_col_num), dtype=np.int))
                 b = np.matrix(np.ones((a_col_num, a_raw_num), dtype=np.int))
             c = a * b
-            res = str(c).replace('\n', '<br/>&nbsp;')
+            res = str(c).replace('\n', ' ')
+            print (res)
         except TypeError:
             res = 'Matrix must only contain numbers!'
         except ValueError:
             res = 'Matrix can not be multiplied because of size!'
-        return JsonResponse({'matrix_c': res})
+        return JsonResponse({'matrix_c': res, 'time': (time.time() - start_time)})
+
 
     def form_invalid(self, form):
         data = {}

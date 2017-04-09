@@ -14,6 +14,7 @@ $(document).ready(function() {
                 $(".error_b").html(data.errors && data.errors.matrix_b || '');
                 var end = new Date().getTime();
                 var time = end - start;
+                document.write(time);
                 $(".time").text('(request time: ' + time + 'ms)');
             }
         });
@@ -32,6 +33,7 @@ $(document).ready(function() {
                 $(".error_b").html(data.errors && data.errors.matrix_b || '');*/
                 var end = new Date().getTime();
                 var time = end - start;
+                document.write(time);
                 $(".time").text('(request time: ' + time + 'ms)');
             }
         });

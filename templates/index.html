@@ -7,15 +7,7 @@
     </head>
 
     <body>
-        <form novalidate class="gen_form">
-            {{ gen_form }}
-            <input type="submit" value="Generate"/>
-        </form>
-        <form method="post" novalidate action="{% url 'index' %}" class="mult_form">
-            {% csrf_token %}
-            {{ gen_form }}
-            <input type="submit" value="Generate & Multiply"/>
-        </form>
+        <br/>
         <br/>
         <form method="post" novalidate action="{% url 'index' %}" class="matrix_form">
             {% csrf_token %}
@@ -34,9 +26,7 @@
             <input type="submit" value="Multiply"/>
         </form>
         <br/>
-        <span>Result: <span class="time"></span></span>
-        <br/>
-        <div class="matrix_c"></div>
+
         <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
         <script src="{% static "js/timer.js" %}"></script>
     </body>
